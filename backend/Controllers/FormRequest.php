@@ -9,51 +9,22 @@ include('./backend/Models/Pessoas/Paciente.php');
     $apiAgendamento = new API();
 
     $paciente = new Paciente();
-    $paciente->xNome = "Fernando Konflanz";
-    $paciente->idade = "23";
-    $paciente->xDocumento = "CPF";
-    $paciente->nDoc = "019.869.374-04";
-    $paciente->fone = "51989366737";
-    $paciente->profissao = "desenvolvedor";
-    $paciente->nomeMae = "Mãe do Fernando";
-    $paciente->nacionalidade = "Alemão";
-    $paciente->dataNascimento = "21/05/1999";
-    $paciente->nConvenio = "0123654789";
-    $paciente->xConvenio = "Unimed";
-    $paciente->is_acompanhado = false;
-    $paciente->pcd = false;
-    $paciente->acompanhante = null;
+    $paciente->xNome = $_POST['name'];
+    $paciente->xDocumento = $_POST['docType'];
+    $paciente->nDoc = $_POST['nDocumento'];
+    $paciente->fone = $_POST['fone'];
 
     $enderecoPaciente = new Endereco();
-    $enderecoPaciente->xLgr = "Rua Avenida Grande";
-    $enderecoPaciente->nro = "150";
-    $enderecoPaciente->cep = "96180-000";
-    $enderecoPaciente->cidade = "Camaquã";
-    $enderecoPaciente->xBairro = "Vila Velha";
-    $enderecoPaciente->xMun = "436987250";
-    $enderecoPaciente->xPais = "1058";
+    $enderecoPaciente->xLgr = $_POST['endereco'];
 
     $paciente->endereco = $enderecoPaciente;
 
     $medico = new MedicoConsulta();
-    $medico->xNome = "Carla Batista";
-    $medico->xEspecialidade = "Nutrição Esportiva";
-    $medico->nEspecialidade = "67";
-    $medico->nAreaAtuacao = "4458";
-    $medico->xAreaAtuacao = "Esporte Adulto";
-    $medico->crm = "148945419819RS";
+    $medico->xNome = $_POST['medico'];
+    $medico->xEspecialidade = $_POST['lookingFor'];
+    $medico->nEspecialidade = $_POST['especialidade'];
 
-    $enderecoMedicoConsulta = new Endereco();
-    $enderecoMedicoConsulta->xLgr = "Rua Avenida Pequena";
-    $enderecoMedicoConsulta->nro = "148";
-    $enderecoMedicoConsulta->cep = "96180-000";
-    $enderecoMedicoConsulta->cidade = "Camaquã";
-    $enderecoMedicoConsulta->xBairro = "Vila Antiga";
-    $enderecoMedicoConsulta->xMun = "436987250";
-    $enderecoMedicoConsulta->xPais = "1058";
-    $medico->endereco = $enderecoMedicoConsulta;
-
-    $medico->agenda = "2022-25-07T15:30:00-03:00";
+    $medico->agenda = $_POST['data'] + $_POST['hora'];;
 
     $agendamentoConsulta = new AgendamentoConsulta();
 
